@@ -31,6 +31,8 @@ public class DonationController {
     @GetMapping
     public String donationForm (Model model){
         model.addAttribute("donation", new DonationDto());
+        model.addAttribute("categories", categoryService.allCategories());
+        model.addAttribute("institutions",institutionService.getInstitutions());
         return "form";
     }
 
@@ -39,6 +41,6 @@ public class DonationController {
         if (bindingResult.hasErrors()){
             return "form";
         }
-        return donation.toString();
+        return "form-confirmation";
     }
 }
