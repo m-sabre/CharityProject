@@ -40,7 +40,7 @@
     </div>
 </header>
 
-<section class="form--steps">
+<div class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
             <h3>Ważne!</h3>
@@ -63,13 +63,13 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-     <c:url var="donationAdress" value="form"/>
-        <form:form method="post" modelAttribute="donation" action="${donation}">
+
+        <form:form method="post" modelAttribute="donation" >
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <c:forEach items="${categories}" var="category">
+                <c:forEach items="${formCategories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
                             <form:checkbox path="categories" value="${category.id}"/>
@@ -111,7 +111,6 @@
                     <div class="form-group form-group--checkbox">
                         <label>
                             <form:radiobutton path="institution" value="${institution.id}"/>
-                            <input type="radio" name="institution" value="id" path="institution"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                             <div class="title">${institution.name}</div>
@@ -150,15 +149,17 @@
 
                         <div class="form-group form-group--inline">
                             <label>Kod pocztowy
-                                <form:input type="text" name="zipCode" path="zipCode" placeholder="XX-XXX"/>
+                                <form:input type="text"  path="zipCode" placeholder="XX-XXX"/>
                             </label>
                             <form:errors path="zipCode" cssClass="error"/>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone" />
+                                <form:input type="text"  path="phoneNumber" placeholder="123 456 789"/>
+                                Numer telefonu
                             </label>
+                            <form:errors path="phoneNumber" cssClass="error"/>
                         </div>
                     </div>
 
@@ -170,16 +171,16 @@
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <<form:input type="time" name="pickUpTime" path="pickUpTime"/> </label>
+                            <label> Godzina <form:input type="time" name="pickUpTime" path="pickUpTime"/> </label>
                             <form:errors path="pickUpTime" cssClass="error"/>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea name="pickUpComment" rows="5" path="pickUpComment"/>
+                                <form:textarea name="pickUpComment" rows="5" path="pickUpComments"/>
                             </label>
-                            <form:errors path="pickUpComment" cssClass="error"/>
+                            <form:errors path="pickUpComments" cssClass="error"/>
                         </div>
                     </div>
                 </div>
@@ -199,9 +200,9 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >${donation.quantity} worki ${donation.categories}dla:</span
-                                >
+                                <span class="summary--text">
+                                        ${donation.quantity} worki ${donation.categories}dla:
+                                </span>
                             </li>
 
                             <li>
@@ -240,9 +241,11 @@
                     <button type="submit" class="btn">Potwierdzam</button>
                 </div>
             </div>
-        </form>
+        </form:form>
     </div>
+</div>
 </section>
+
 
 <jsp:include page="footer.jsp"/>
 

@@ -164,8 +164,15 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-      let categories =this.$form.querySelectorAll("[name='categories']:checked")
-    }
+
+      let categories =this.$form.querySelectorAll("[name='categories']:checked") //nazwy kategorii
+      let institution = this.$form.querySelector("input[name='institution']:checked");
+      let summaryText = this.$form.getElementsByClassName("summary--text");
+      for (let i = 0; i < summaryText.length; i++) {
+        summaryText[i].innerText = "";
+      }
+
+
 
   }
   const form = document.querySelector(".form--steps");

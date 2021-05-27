@@ -26,17 +26,28 @@ public class DonationDto {
     @Size(min=3)
     private String city;
     @NotBlank
-    @Size(min=6)
+    @Pattern(regexp = "([0-9]{2})-([0-9]{3})")
     private String zipCode;
     @Future
     @NotNull
-    @DateTimeFormat(pattern="YYY-MM-DD")
+    @DateTimeFormat(pattern="dd-mm-yyy")
     private LocalDate pickUpDate;
     @NotNull
     @DateTimeFormat(pattern="HH:MM")
     private LocalTime pickUpTime;
     @Size(max=200)
     private String pickUpComments;
+    @NotBlank
+    @Pattern(regexp = "[0-9]{9}")
+    private String phoneNumber;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Integer getQuantity() {
         return quantity;
