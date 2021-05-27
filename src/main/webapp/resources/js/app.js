@@ -166,13 +166,44 @@ document.addEventListener("DOMContentLoaded", function() {
       // TODO: get data from inputs and show them in summary
 
       let categories =this.$form.querySelectorAll("[name='categories']:checked") //nazwy kategorii
-      let institution = this.$form.querySelector("input[name='institution']:checked");
-      let summaryText = this.$form.getElementsByClassName("summary--text");
-      for (let i = 0; i < summaryText.length; i++) {
-        summaryText[i].innerText = "";
+      let categoriesDescription=[];
+      for (let i = 0; i < categories.length; i++) {
+        categoriesDescription.push(categories[i].nextElementSibling.innerText);
       }
 
+      let institution = this.$form.querySelector("input[name='institution']:checked"); //nazwy fundacji
+      let forInstitution = "Dla fundacji: " + institution.nextElementSibling.innerText;
 
+
+
+
+      let quantity = form.querySelector('[data-step="2"] input');
+      let numberBags = "";
+      if (quantity.value === 1) {
+        numberBags = quantity.value + " worek ";
+      }
+      if (quantity.value > 1 && quantity.value < 5) {
+        numberBags = quantity.value + " worki ";
+      }
+      if (quantity.value >= 5 ) {
+        numberBags = quantity.value + " worków ";
+      }
+
+      let summaryText = this.$form.getElementsByClassName("summary--text");
+      summaryText[0].innerText = numberBags+categoriesDescription.innerText;
+      summaryText[1].innerText = forInstitution.innerText;
+
+
+      let summaryForm = this.$form.querySelectorAll(".summary .form-section--column li");
+
+      summaryForm[0].innerText = this.$form.querySelector("[name='street']").value;
+      summaryForm[1].innerText = this.$form.querySelector("[name='city']").value;
+      summaryForm[2].innerText = this.$form.querySelector("[name='zipCode']").value;
+      summaryForm[3].innerText = this.$form.querySelector("[name='phoneNumber']").value;
+      summaryForm[4].innerText = this.$form.querySelector("[name='pickUpDate']").value;
+      summaryForm[5].innerText = this.$form.querySelector("[name='pickUpTime']").value;
+      summaryForm[6].innerText = this.$form.querySelector("[name='pickUpComments']").value;
+    }
 
   }
   const form = document.querySelector(".form--steps");
