@@ -30,10 +30,10 @@ public class DonationDto {
     private String zipCode;
     @Future
     @NotNull
-    @DateTimeFormat(pattern="dd-mm-yyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     @NotNull
-    @DateTimeFormat(pattern="HH:MM")
+//    @DateTimeFormat
     private LocalTime pickUpTime;
     @Size(max=200)
     private String pickUpComments;

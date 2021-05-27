@@ -39,10 +39,10 @@ public class Donation {
     private String zipCode;
     @Future
     @NotNull
-    @DateTimeFormat(pattern="dd-mm-yyy")
+//    @DateTimeFormat(pattern="dd-mm-yyyy")
     private LocalDate pickUpDate;
     @NotNull
-    @DateTimeFormat(pattern="HH:MM")
+//    @DateTimeFormat(pattern="HH:MM")
     private LocalTime pickUpTime;
     @Size(max=200)
     private String pickUpComments;
